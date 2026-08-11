@@ -41,10 +41,7 @@ button {
   display: flex;
 }
 
-
-/* =========================
-   HOME
-========================= */
+/* HOME */
 
 #home {
   align-items: center;
@@ -113,8 +110,7 @@ button {
 
   border-radius: 999px;
 
-  background:
-    rgba(7,17,31,.9);
+  background: rgba(7,17,31,.9);
 
   color: #fff;
 
@@ -185,6 +181,11 @@ h1 span {
   touch-action: manipulation;
 }
 
+.main-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
 .main-button:active {
   transform: scale(.98);
 }
@@ -197,10 +198,7 @@ h1 span {
   background: #172033;
 }
 
-
-/* =========================
-   CHALLENGE SCREENS
-========================= */
+/* CHALLENGE SCREENS */
 
 #ski,
 #snowboard {
@@ -222,14 +220,10 @@ h1 span {
 
   color: var(--dark);
 
-  padding:
-    20px 20px 35px;
+  padding: 20px 20px 35px;
 }
 
-
-/* =========================
-   BACK BUTTON
-========================= */
+/* BACK BUTTON */
 
 .back-button {
   position: absolute;
@@ -259,10 +253,7 @@ h1 span {
   touch-action: manipulation;
 }
 
-
-/* =========================
-   TITLE
-========================= */
+/* TITLE */
 
 .screen-title {
   width: 100%;
@@ -287,10 +278,7 @@ h1 span {
   margin: 9px 0 0;
 }
 
-
-/* =========================
-   WHEEL
-========================= */
+/* WHEEL */
 
 .wheel-wrap {
   width:
@@ -303,8 +291,7 @@ h1 span {
 
   position: relative;
 
-  margin:
-    16px auto 10px;
+  margin: 16px auto 10px;
 
   flex-shrink: 0;
 }
@@ -327,11 +314,10 @@ h1 span {
   touch-action: manipulation;
 }
 
-
-/* =========================
-   BOTH POINTERS
-   SMALL + TOP
-========================= */
+/* BOTH POINTERS
+   HALF THE PREVIOUS SIZE
+   BOTH AT THE TOP
+*/
 
 .pointer,
 .snowboard-pointer {
@@ -344,36 +330,32 @@ h1 span {
   left: 50%;
   right: auto;
 
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
 
   width: 0;
   height: 0;
 
   border-left:
-    4px solid transparent;
+    2px solid transparent;
 
   border-right:
-    4px solid transparent;
+    2px solid transparent;
 
   border-top:
-    8px solid var(--red);
+    4px solid var(--red);
 
   border-bottom: 0;
 
   filter:
     drop-shadow(
       0 1px 1px
-      rgba(0,0,0,.25)
+      rgba(0,0,0,.2)
     );
 
   pointer-events: none;
 }
 
-
-/* =========================
-   RESULT
-========================= */
+/* RESULT */
 
 .result {
   width: 94vw;
@@ -435,18 +417,16 @@ h1 span {
   line-height: 1.05;
 }
 
-
-/* =========================
-   DECISION BUTTONS
-========================= */
+/* DECISION BUTTONS */
 
 .decision-buttons {
   display: none;
 
-  width: min(
-    94vw,
-    620px
-  );
+  width:
+    min(
+      94vw,
+      620px
+    );
 
   gap: 10px;
 
@@ -478,27 +458,23 @@ h1 span {
 }
 
 .done-button {
-  background:
-    var(--green);
+  background: var(--green);
 }
 
 .failed-button {
-  background:
-    var(--red);
+  background: var(--red);
 }
 
-
-/* =========================
-   FAILED OPTIONS
-========================= */
+/* FAILED OPTIONS */
 
 .failed-options {
   display: none;
 
-  width: min(
-    94vw,
-    620px
-  );
+  width:
+    min(
+      94vw,
+      620px
+    );
 
   gap: 10px;
 
@@ -530,19 +506,14 @@ h1 span {
 }
 
 .home-option {
-  background:
-    #172033;
+  background: #172033;
 }
 
 .retry-option {
-  background:
-    #0b5cff;
+  background: #0b5cff;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -616,10 +587,7 @@ h1 span {
   }
 }
 
-
-/* =========================
-   VERY SMALL PHONES
-========================= */
+/* VERY SMALL PHONES */
 
 @media (max-width: 380px) {
 
