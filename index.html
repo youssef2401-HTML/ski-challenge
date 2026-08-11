@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkiChallenge</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <section id="home" class="screen active">
+    <div class="snow"></div>
+    <div class="home-content">
+      <div class="badge">SKI EGYPT</div>
+      <h1>Ski<span>Challenge</span></h1>
+      <p>Spin the wheel. Do the challenge. Get your candy.</p>
+      <button class="main-button ski-button" onclick="openSki()">🎿 SKI</button>
+      <button class="main-button snowboard-button" onclick="openSnowboard()">🏂 SNOWBOARD</button>
+    </div>
+  </section>
+
+  <section id="ski" class="screen">
+    <button class="back-button" onclick="goHome()">← HOME</button>
+    <div class="screen-title">
+      <div class="badge">SKI CHALLENGE</div>
+      <h2>Spin for your challenge</h2>
+    </div>
+
+    <div class="wheel-wrap">
+      <div class="pointer"></div>
+      <canvas id="wheel" width="700" height="700"></canvas>
+    </div>
+
+    <div id="result" class="result">
+      <div class="result-label">YOUR CHALLENGE</div>
+      <div id="challengeText">SPIN THE WHEEL</div>
+    </div>
+
+
+    <div id="decisionButtons" class="decision-buttons">
+      <button class="done-button" onclick="finishChallenge()">DONE</button>
+      <button class="failed-button" onclick="showFailedOptions('ski')">FAILED</button>
+    </div>
+    <div id="skiFailedOptions" class="failed-options">
+      <button class="home-option" onclick="goHome()">HOME</button>
+      <button class="retry-option" onclick="retryChallenge('ski')">RETRY</button>
+    </div>
+  </section>
+
+  <section id="snowboard" class="screen">
+    <button class="back-button" onclick="goHome()">← HOME</button>
+    <div class="screen-title">
+      <div class="badge">SNOWBOARD CHALLENGE</div>
+      <h2>Spin for your challenge</h2>
+    </div>
+
+    <div class="wheel-wrap">
+      <div class="pointer snowboard-pointer"></div>
+      <canvas id="snowboardWheel" width="700" height="700"></canvas>
+    </div>
+
+    <div id="snowboardResult" class="result">
+      <div class="result-label">YOUR CHALLENGE</div>
+      <div id="snowboardChallengeText">SPIN THE WHEEL</div>
+    </div>
+
+    <div id="snowboardDecisionButtons" class="decision-buttons">
+      <button class="done-button" onclick="finishChallenge()">DONE</button>
+      <button class="failed-button" onclick="showFailedOptions('snowboard')">FAILED</button>
+    </div>
+    <div id="snowboardFailedOptions" class="failed-options">
+      <button class="home-option" onclick="goHome()">HOME</button>
+      <button class="retry-option" onclick="retryChallenge('snowboard')">RETRY</button>
+    </div>
+  </section>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
