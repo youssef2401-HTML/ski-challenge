@@ -11,8 +11,10 @@
   --red: #dc2626;
 }
 
-html, body {
+html,
+body {
   margin: 0;
+  width: 100%;
   min-height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   background: var(--dark);
@@ -23,8 +25,13 @@ body {
   overflow-x: hidden;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .screen {
-  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
   display: none;
   position: relative;
   overflow: hidden;
@@ -34,24 +41,38 @@ body {
   display: flex;
 }
 
+/* =========================
+   HOME
+========================= */
+
 #home {
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(circle at 50% 10%, rgba(255,255,255,.35), transparent 30%),
-    linear-gradient(180deg, #79c9ff 0%, #dff5ff 55%, #ffffff 100%);
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(255, 255, 255, 0.35),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #79c9ff 0%,
+      #dff5ff 55%,
+      #ffffff 100%
+    );
   color: var(--dark);
 }
 
 .snow {
   position: absolute;
   inset: 0;
-  opacity: .55;
+  opacity: 0.55;
   background-image:
     radial-gradient(circle, #fff 1px, transparent 2px),
     radial-gradient(circle, #fff 2px, transparent 3px);
   background-size: 48px 48px, 91px 91px;
   background-position: 0 0, 20px 35px;
+  pointer-events: none;
 }
 
 .home-content {
@@ -59,14 +80,14 @@ body {
   z-index: 2;
   width: min(92vw, 650px);
   text-align: center;
-  padding: 40px 20px;
+  padding: 30px 20px;
 }
 
 .badge {
   display: inline-block;
   padding: 8px 15px;
   border-radius: 999px;
-  background: rgba(7,17,31,.9);
+  background: rgba(7, 17, 31, 0.9);
   color: #fff;
   font-size: 12px;
   font-weight: 800;
@@ -76,7 +97,7 @@ body {
 h1 {
   margin: 20px 0 8px;
   font-size: clamp(55px, 12vw, 105px);
-  line-height: .9;
+  line-height: 0.9;
   letter-spacing: -5px;
 }
 
@@ -86,7 +107,7 @@ h1 span {
 }
 
 .home-content p {
-  font-size: 18px;
+  font-size: clamp(15px, 2.5vw, 18px);
   margin: 24px 0 35px;
 }
 
@@ -95,19 +116,24 @@ h1 span {
   max-width: 430px;
   border: 0;
   border-radius: 18px;
-  padding: 22px;
-  margin: 8px auto;
+  padding: 20px;
+  margin: 10px auto;
   display: block;
   color: #fff;
-  font-size: 23px;
+  font-size: clamp(18px, 4vw, 23px);
   font-weight: 900;
   cursor: pointer;
-  transition: transform .15s, filter .15s;
+  transition: transform 0.15s, filter 0.15s;
+  touch-action: manipulation;
 }
 
 .main-button:hover {
   transform: translateY(-2px);
   filter: brightness(1.08);
+}
+
+.main-button:active {
+  transform: scale(0.98);
 }
 
 .ski-button {
@@ -118,123 +144,174 @@ h1 span {
   background: #172033;
 }
 
-#ski {
+/* =========================
+   CHALLENGE SCREENS
+========================= */
+
+#ski,
+#snowboard {
   flex-direction: column;
   align-items: center;
   background:
-    radial-gradient(circle at 50% 0%, #bfe9ff 0, transparent 38%),
-    linear-gradient(180deg, #dff6ff 0%, #f7fcff 100%);
+    radial-gradient(
+      circle at 50% 0%,
+      #bfe9ff 0,
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      #dff6ff 0%,
+      #f7fcff 100%
+    );
   color: var(--dark);
-  padding: 25px 20px 45px;
+  padding: 20px;
 }
+
+/* =========================
+   BACK BUTTON
+========================= */
 
 .back-button {
   position: absolute;
-  top: 22px;
-  left: 22px;
+  top: 20px;
+  left: 20px;
   border: 0;
   border-radius: 12px;
-  padding: 12px 17px;
-  background: rgba(7,17,31,.9);
+  padding: 11px 16px;
+  background: rgba(7, 17, 31, 0.9);
   color: #fff;
+  font-size: 14px;
   font-weight: 800;
   cursor: pointer;
   z-index: 10;
+  touch-action: manipulation;
 }
 
+.back-button:active {
+  transform: scale(0.96);
+}
+
+/* =========================
+   TITLE
+========================= */
+
 .screen-title {
+  width: 100%;
   text-align: center;
   margin-top: 8px;
+  flex-shrink: 0;
 }
 
 .screen-title h2 {
-  font-size: clamp(28px, 5vw, 44px);
-  margin: 14px 0 0;
+  font-size: clamp(26px, 5vw, 44px);
+  line-height: 1.05;
+  margin: 12px 0 0;
 }
+
+/* =========================
+   WHEEL
+========================= */
 
 .wheel-wrap {
-  width: min(72vw, 600px);
+  width: min(
+    72vw,
+    600px
+  );
   aspect-ratio: 1;
   position: relative;
-  margin: 25px auto 10px;
+  margin: 20px auto 12px;
+  flex-shrink: 1;
 }
 
-#wheel {
+#wheel,
+#snowboardWheel {
   width: 100%;
   height: 100%;
   display: block;
-  filter: drop-shadow(0 15px 22px rgba(7,17,31,.22));
+  filter: drop-shadow(
+    0 12px 20px rgba(7, 17, 31, 0.2)
+  );
+  cursor: pointer;
+  touch-action: manipulation;
 }
+
+/* =========================
+   POINTER
+========================= */
 
 .pointer {
   position: absolute;
   z-index: 5;
-  top: -4px;
+  top: -3px;
   left: 50%;
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 18px solid transparent;
-  border-right: 18px solid transparent;
-  border-top: 35px solid var(--red);
-  filter: drop-shadow(0 3px 2px rgba(0,0,0,.25));
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-top: 32px solid var(--red);
+  filter: drop-shadow(
+    0 3px 2px rgba(0, 0, 0, 0.25)
+  );
 }
+
+.snowboard-pointer {
+  top: 50%;
+  left: auto;
+  right: -3px;
+  transform: translateY(-50%);
+  border-left: 0;
+  border-right: 32px solid var(--red);
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+}
+
+/* =========================
+   RESULT
+========================= */
 
 .result {
   width: min(92vw, 620px);
-  min-height: 92px;
-  border-radius: 20px;
+  min-height: 82px;
+  border-radius: 18px;
   background: #fff;
-  box-shadow: 0 10px 30px rgba(7,17,31,.13);
+  box-shadow:
+    0 8px 25px rgba(7, 17, 31, 0.12);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 15px 20px;
-  margin: 8px auto 16px;
+  padding: 12px 18px;
+  margin: 4px auto 10px;
+  flex-shrink: 0;
 }
 
 .result-label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 900;
   letter-spacing: 2px;
   color: #64748b;
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 }
 
-#challengeText {
-  font-size: clamp(22px, 4vw, 34px);
+#challengeText,
+#snowboardChallengeText {
+  font-size: clamp(19px, 4vw, 34px);
+  line-height: 1.1;
   font-weight: 950;
 }
 
-.spin-button {
-  border: 0;
-  border-radius: 999px;
-  padding: 18px 60px;
-  background: var(--blue);
-  color: #fff;
-  font-size: 24px;
-  font-weight: 950;
-  cursor: pointer;
-  box-shadow: 0 8px 0 #0644c9;
-}
-
-.spin-button:active {
-  transform: translateY(5px);
-  box-shadow: 0 3px 0 #0644c9;
-}
-
-.spin-button:disabled {
-  opacity: .6;
-  cursor: not-allowed;
-}
+/* =========================
+   DECISION BUTTONS
+========================= */
 
 .decision-buttons {
   display: none;
   width: min(92vw, 620px);
-  gap: 12px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 4px;
+  flex-shrink: 0;
 }
 
 .decision-buttons.show {
@@ -243,13 +320,15 @@ h1 span {
 
 .decision-buttons button {
   flex: 1;
+  min-height: 56px;
   border: 0;
-  border-radius: 15px;
-  padding: 17px;
+  border-radius: 14px;
+  padding: 14px;
   color: #fff;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 900;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .done-button {
@@ -260,51 +339,20 @@ h1 span {
   background: var(--red);
 }
 
-#snowboard {
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, #cdefff, #fff);
-  color: var(--dark);
+.decision-buttons button:active {
+  transform: scale(0.97);
 }
 
-.placeholder {
-  width: min(90vw, 600px);
-  text-align: center;
-  background: rgba(255,255,255,.9);
-  border-radius: 25px;
-  padding: 45px 30px;
-  box-shadow: 0 15px 40px rgba(7,17,31,.15);
-}
-
-.placeholder h2 {
-  font-size: 45px;
-  margin: 20px 0 8px;
-}
-
-@media (max-width: 600px) {
-  #ski {
-    padding-top: 70px;
-  }
-
-  .wheel-wrap {
-    width: min(88vw, 500px);
-  }
-
-  .decision-buttons {
-    flex-direction: column;
-  }
-
-  .back-button {
-    top: 15px;
-    left: 15px;
-  }
-}
+/* =========================
+   FAILED OPTIONS
+========================= */
 
 .failed-options {
   display: none;
   width: min(92vw, 620px);
-  gap: 12px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 4px;
+  flex-shrink: 0;
 }
 
 .failed-options.show {
@@ -313,13 +361,15 @@ h1 span {
 
 .failed-options button {
   flex: 1;
+  min-height: 56px;
   border: 0;
-  border-radius: 15px;
-  padding: 17px;
+  border-radius: 14px;
+  padding: 14px;
   color: #fff;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 900;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .home-option {
@@ -327,22 +377,250 @@ h1 span {
 }
 
 .retry-option {
-  background: #0b5cff;
+  background: var(--blue);
 }
 
-@media (max-width: 600px) {
-  .failed-options {
-    flex-direction: column;
+.failed-options button:active {
+  transform: scale(0.97);
+}
+
+/* =========================
+   TABLETS / SMALL LAPTOPS
+========================= */
+
+@media (max-height: 850px) and (min-width: 601px) {
+  #ski,
+  #snowboard {
+    padding-top: 15px;
+    padding-bottom: 20px;
+  }
+
+  .screen-title h2 {
+    margin-top: 8px;
+  }
+
+  .wheel-wrap {
+    width: min(58vh, 500px);
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+
+  .result {
+    min-height: 72px;
+    padding: 10px 16px;
+  }
+
+  .decision-buttons button,
+  .failed-options button {
+    min-height: 50px;
+    padding: 12px;
   }
 }
 
-.snowboard-pointer {
-  top: 50%;
-  left: auto;
-  right: -4px;
-  transform: translateY(-50%);
-  border-left: 0;
-  border-right: 35px solid var(--red);
-  border-top: 18px solid transparent;
-  border-bottom: 18px solid transparent;
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  #home {
+    min-height: 100svh;
+  }
+
+  .home-content {
+    width: 92vw;
+    padding: 20px 10px;
+  }
+
+  .badge {
+    padding: 7px 12px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  h1 {
+    margin-top: 16px;
+    font-size: clamp(52px, 17vw, 78px);
+    letter-spacing: -4px;
+  }
+
+  .home-content p {
+    margin: 20px 0 28px;
+    line-height: 1.4;
+  }
+
+  .main-button {
+    max-width: 100%;
+    padding: 18px;
+    border-radius: 15px;
+    font-size: 19px;
+  }
+
+  #ski,
+  #snowboard {
+    min-height: 100svh;
+    padding:
+      68px
+      12px
+      max(18px, env(safe-area-inset-bottom));
+    justify-content: flex-start;
+  }
+
+  .back-button {
+    top: 14px;
+    left: 12px;
+    padding: 10px 13px;
+    font-size: 13px;
+  }
+
+  .screen-title {
+    margin-top: 0;
+  }
+
+  .screen-title h2 {
+    margin-top: 9px;
+    font-size: clamp(24px, 7vw, 32px);
+  }
+
+  .wheel-wrap {
+    width: min(88vw, 430px);
+    margin: 16px auto 10px;
+  }
+
+  .pointer {
+    top: -2px;
+    border-left-width: 14px;
+    border-right-width: 14px;
+    border-top-width: 27px;
+  }
+
+  .snowboard-pointer {
+    top: 50%;
+    right: -2px;
+    border-right-width: 27px;
+    border-top-width: 14px;
+    border-bottom-width: 14px;
+  }
+
+  .result {
+    width: 94vw;
+    min-height: 74px;
+    border-radius: 15px;
+    padding: 10px 14px;
+    margin: 2px auto 8px;
+  }
+
+  .result-label {
+    font-size: 9px;
+    margin-bottom: 5px;
+  }
+
+  #challengeText,
+  #snowboardChallengeText {
+    font-size: clamp(18px, 5vw, 27px);
+  }
+
+  .decision-buttons,
+  .failed-options {
+    width: 94vw;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .decision-buttons button,
+  .failed-options button {
+    min-height: 52px;
+    padding: 12px 10px;
+    border-radius: 13px;
+    font-size: 17px;
+  }
+}
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 380px) {
+  #ski,
+  #snowboard {
+    padding-top: 64px;
+  }
+
+  .screen-title h2 {
+    font-size: 23px;
+  }
+
+  .wheel-wrap {
+    width: 84vw;
+    margin-top: 12px;
+  }
+
+  .result {
+    min-height: 68px;
+  }
+
+  #challengeText,
+  #snowboardChallengeText {
+    font-size: 17px;
+  }
+
+  .decision-buttons button,
+  .failed-options button {
+    min-height: 48px;
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   LANDSCAPE MOBILE
+========================= */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  #ski,
+  #snowboard {
+    padding:
+      50px
+      15px
+      15px;
+  }
+
+  .screen-title {
+    position: absolute;
+    top: 10px;
+  }
+
+  .screen-title h2 {
+    display: none;
+  }
+
+  .wheel-wrap {
+    width: min(70vh, 400px);
+    margin: 0 auto 6px;
+  }
+
+  .result {
+    min-height: 58px;
+    width: min(80vw, 600px);
+    padding: 7px 12px;
+  }
+
+  .result-label {
+    margin-bottom: 3px;
+  }
+
+  #challengeText,
+  #snowboardChallengeText {
+    font-size: 18px;
+  }
+
+  .decision-buttons,
+  .failed-options {
+    width: min(80vw, 600px);
+  }
+
+  .decision-buttons button,
+  .failed-options button {
+    min-height: 44px;
+    padding: 8px;
+    font-size: 15px;
+  }
 }
