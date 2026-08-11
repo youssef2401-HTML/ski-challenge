@@ -61,14 +61,22 @@ const snowboardChallenges = [
 const canvas = document.getElementById("wheel");
 const ctx = canvas.getContext("2d");
 
-const snowboardCanvas = document.getElementById("snowboardWheel");
-const snowboardCtx = snowboardCanvas
-  ? snowboardCanvas.getContext("2d")
-  : null;
+const snowboardCanvas =
+  document.getElementById("snowboardWheel");
 
-const challengeText = document.getElementById("challengeText");
-const result = document.getElementById("result");
-const decisionButtons = document.getElementById("decisionButtons");
+const snowboardCtx =
+  snowboardCanvas
+    ? snowboardCanvas.getContext("2d")
+    : null;
+
+const challengeText =
+  document.getElementById("challengeText");
+
+const result =
+  document.getElementById("result");
+
+const decisionButtons =
+  document.getElementById("decisionButtons");
 
 let rotation = 0;
 let spinning = false;
@@ -84,19 +92,31 @@ let snowboardSpinning = false;
 canvas.addEventListener("click", (event) => {
   const rect = canvas.getBoundingClientRect();
 
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
+  const scaleX =
+    canvas.width / rect.width;
 
-  const x = (event.clientX - rect.left) * scaleX;
-  const y = (event.clientY - rect.top) * scaleY;
+  const scaleY =
+    canvas.height / rect.height;
 
-  const center = canvas.width / 2;
-  const distance = Math.hypot(
-    x - center,
-    y - center
-  );
+  const x =
+    (event.clientX - rect.left) * scaleX;
 
-  if (distance <= 62 && !spinning) {
+  const y =
+    (event.clientY - rect.top) * scaleY;
+
+  const center =
+    canvas.width / 2;
+
+  const distance =
+    Math.hypot(
+      x - center,
+      y - center
+    );
+
+  if (
+    distance <= 62 &&
+    !spinning
+  ) {
     spinWheel();
   }
 });
@@ -107,21 +127,46 @@ function drawWheel() {
   const center = size / 2;
   const radius = size / 2 - 8;
 
-  const count = skiChallenges.length;
-  const slice = (Math.PI * 2) / count;
+  const count =
+    skiChallenges.length;
 
-  ctx.clearRect(0, 0, size, size);
+  const slice =
+    (Math.PI * 2) / count;
+
+  ctx.clearRect(
+    0,
+    0,
+    size,
+    size
+  );
 
   ctx.save();
-  ctx.translate(center, center);
+
+  ctx.translate(
+    center,
+    center
+  );
+
   ctx.rotate(rotation);
 
-  for (let i = 0; i < count; i++) {
-    const start = i * slice;
-    const end = start + slice;
+  for (
+    let i = 0;
+    i < count;
+    i++
+  ) {
+    const start =
+      i * slice;
+
+    const end =
+      start + slice;
 
     ctx.beginPath();
-    ctx.moveTo(0, 0);
+
+    ctx.moveTo(
+      0,
+      0
+    );
+
     ctx.arc(
       0,
       0,
@@ -129,6 +174,7 @@ function drawWheel() {
       start,
       end
     );
+
     ctx.closePath();
 
     ctx.fillStyle =
@@ -138,16 +184,24 @@ function drawWheel() {
 
     ctx.fill();
 
-    ctx.strokeStyle = "#07111f";
+    ctx.strokeStyle =
+      "#07111f";
+
     ctx.lineWidth = 2;
+
     ctx.stroke();
 
     ctx.save();
 
-    ctx.rotate(start + slice / 2);
+    ctx.rotate(
+      start + slice / 2
+    );
 
-    ctx.textAlign = "right";
-    ctx.textBaseline = "middle";
+    ctx.textAlign =
+      "right";
+
+    ctx.textBaseline =
+      "middle";
 
     ctx.fillStyle =
       i % 2 === 0
@@ -157,33 +211,45 @@ function drawWheel() {
     ctx.font =
       `900 ${Math.max(
         10,
-        Math.min(17, 410 / count)
+        Math.min(
+          17,
+          410 / count
+        )
       )}px Arial`;
 
-    let label = skiChallenges[i];
+    let label =
+      skiChallenges[i];
 
     if (label.length > 22) {
-      const parts = label.split(" — ");
+      const parts =
+        label.split(" — ");
 
       if (parts.length > 1) {
         label =
           parts[0] +
           "\n" +
-          parts.slice(1).join(" — ");
+          parts
+            .slice(1)
+            .join(" — ");
       }
     }
 
-    const lines = label.split("\n");
+    const lines =
+      label.split("\n");
+
     const lineHeight = 17;
 
-    lines.forEach((line, index) => {
-      ctx.fillText(
-        line,
-        radius - 20,
-        (index - (lines.length - 1) / 2) *
-          lineHeight
-      );
-    });
+    lines.forEach(
+      (line, index) => {
+        ctx.fillText(
+          line,
+          radius - 20,
+          (index -
+            (lines.length - 1) / 2) *
+            lineHeight
+        );
+      }
+    );
 
     ctx.restore();
   }
@@ -191,6 +257,7 @@ function drawWheel() {
   ctx.restore();
 
   ctx.beginPath();
+
   ctx.arc(
     center,
     center,
@@ -199,13 +266,22 @@ function drawWheel() {
     Math.PI * 2
   );
 
-  ctx.fillStyle = "#07111f";
+  ctx.fillStyle =
+    "#07111f";
+
   ctx.fill();
 
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "900 24px Arial";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
+  ctx.fillStyle =
+    "#ffffff";
+
+  ctx.font =
+    "900 24px Arial";
+
+  ctx.textAlign =
+    "center";
+
+  ctx.textBaseline =
+    "middle";
 
   ctx.fillText(
     "SKI",
@@ -216,7 +292,7 @@ function drawWheel() {
 
 
 /* =========================
-   FAST SPIN EASING
+   SPIN EASING
 ========================= */
 
 function easeOut(t) {
@@ -233,17 +309,23 @@ function spinWheel() {
 
   spinning = true;
 
-  decisionButtons.classList.remove("show");
+  decisionButtons
+    .classList
+    .remove("show");
 
   document
     .getElementById("skiFailedOptions")
-    .classList.remove("show");
+    .classList
+    .remove("show");
 
   challengeText.textContent =
     "SPINNING...";
 
-  const count = skiChallenges.length;
-  const slice = (Math.PI * 2) / count;
+  const count =
+    skiChallenges.length;
+
+  const slice =
+    (Math.PI * 2) / count;
 
   const chosen =
     Math.floor(
@@ -251,7 +333,8 @@ function spinWheel() {
     );
 
   const targetCenter =
-    chosen * slice + slice / 2;
+    chosen * slice +
+    slice / 2;
 
   const pointerAngle =
     -Math.PI / 2;
@@ -260,7 +343,8 @@ function spinWheel() {
     Math.PI * 2;
 
   const desiredRotation =
-    pointerAngle - targetCenter;
+    pointerAngle -
+    targetCenter;
 
   const extraTurns =
     22 +
@@ -274,7 +358,8 @@ function spinWheel() {
 
   finalRotation +=
     Math.floor(
-      (rotation - finalRotation) /
+      (rotation -
+        finalRotation) /
         twoPi + 1
     ) * twoPi;
 
@@ -287,7 +372,7 @@ function spinWheel() {
 
   const duration =
     1200 +
-    Math.random() * 200;
+    Math.random() * 250;
 
   const startTime =
     performance.now();
@@ -325,7 +410,7 @@ function spinWheel() {
           {
             transform:
               "scale(.94)",
-            opacity: 0.4
+            opacity: .4
           },
           {
             transform:
@@ -346,13 +431,15 @@ function spinWheel() {
 
       spinning = false;
 
-      decisionButtons.classList.add(
-        "show"
-      );
+      decisionButtons
+        .classList
+        .add("show");
     }
   }
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(
+    animate
+  );
 }
 
 
@@ -366,15 +453,14 @@ function openSki() {
   challengeText.textContent =
     "SPIN THE WHEEL";
 
-  decisionButtons.classList.remove(
-    "show"
-  );
+  decisionButtons
+    .classList
+    .remove("show");
 
   document
-    .getElementById(
-      "skiFailedOptions"
-    )
-    .classList.remove("show");
+    .getElementById("skiFailedOptions")
+    .classList
+    .remove("show");
 }
 
 
@@ -385,13 +471,15 @@ function openSnowboard() {
     .getElementById(
       "snowboardDecisionButtons"
     )
-    .classList.remove("show");
+    .classList
+    .remove("show");
 
   document
     .getElementById(
       "snowboardFailedOptions"
     )
-    .classList.remove("show");
+    .classList
+    .remove("show");
 
   document
     .getElementById(
@@ -415,25 +503,29 @@ function showFailedOptions(type) {
       .getElementById(
         "decisionButtons"
       )
-      .classList.remove("show");
+      .classList
+      .remove("show");
 
     document
       .getElementById(
         "skiFailedOptions"
       )
-      .classList.add("show");
+      .classList
+      .add("show");
   } else {
     document
       .getElementById(
         "snowboardDecisionButtons"
       )
-      .classList.remove("show");
+      .classList
+      .remove("show");
 
     document
       .getElementById(
         "snowboardFailedOptions"
       )
-      .classList.add("show");
+      .classList
+      .add("show");
   }
 }
 
@@ -444,7 +536,8 @@ function retryChallenge(type) {
       .getElementById(
         "skiFailedOptions"
       )
-      .classList.remove("show");
+      .classList
+      .remove("show");
 
     spinWheel();
   } else {
@@ -452,7 +545,8 @@ function retryChallenge(type) {
       .getElementById(
         "snowboardFailedOptions"
       )
-      .classList.remove("show");
+      .classList
+      .remove("show");
 
     spinSnowboardWheel();
   }
@@ -468,14 +562,14 @@ function showScreen(id) {
   document
     .querySelectorAll(".screen")
     .forEach((screen) => {
-      screen.classList.remove(
-        "active"
-      );
+      screen.classList
+        .remove("active");
     });
 
   document
     .getElementById(id)
-    .classList.add("active");
+    .classList
+    .add("active");
 }
 
 
@@ -586,7 +680,10 @@ function drawSnowboardWheel() {
     snowboardCtx.font =
       `900 ${Math.max(
         10,
-        Math.min(17, 410 / count)
+        Math.min(
+          17,
+          410 / count
+        )
       )}px Arial`;
 
     let label =
@@ -685,13 +782,15 @@ function spinSnowboardWheel() {
     .getElementById(
       "snowboardDecisionButtons"
     )
-    .classList.remove("show");
+    .classList
+    .remove("show");
 
   document
     .getElementById(
       "snowboardFailedOptions"
     )
-    .classList.remove("show");
+    .classList
+    .remove("show");
 
   document
     .getElementById(
@@ -712,13 +811,19 @@ function spinSnowboardWheel() {
     );
 
   const targetCenter =
-    chosen * slice + slice / 2;
+    chosen * slice +
+    slice / 2;
 
   const twoPi =
     Math.PI * 2;
 
+  /*
+    SNOWBOARD POINTER IS AT TOP
+  */
+
   const desiredRotation =
-    -targetCenter;
+    -Math.PI / 2 -
+    targetCenter;
 
   const startRotation =
     snowboardRotation;
@@ -746,7 +851,7 @@ function spinSnowboardWheel() {
 
   const duration =
     1200 +
-    Math.random() * 200;
+    Math.random() * 250;
 
   const startTime =
     performance.now();
@@ -789,13 +894,16 @@ function spinSnowboardWheel() {
         .getElementById(
           "snowboardDecisionButtons"
         )
-        .classList.add("show");
+        .classList
+        .add("show");
 
       snowboardSpinning = false;
     }
   }
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(
+    animate
+  );
 }
 
 
@@ -808,7 +916,8 @@ if (snowboardCanvas) {
     "click",
     (event) => {
       const rect =
-        snowboardCanvas.getBoundingClientRect();
+        snowboardCanvas
+          .getBoundingClientRect();
 
       const scaleX =
         snowboardCanvas.width /
